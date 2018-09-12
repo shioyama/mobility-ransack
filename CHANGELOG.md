@@ -1,5 +1,12 @@
 # Mobility Ransack Changelog
 
+## 0.2
+
+### 0.2.0
+
+- Support sorting on translated attributes
+  ([#2](https://github.com/shioyama/mobility-ransack/pull/2))
+
 ## 0.1
 
 ### 0.1.1
