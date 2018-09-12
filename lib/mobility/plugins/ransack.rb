@@ -26,11 +26,20 @@ module Mobility
 
       class Search < ::Ransack::Search
         def result(opts = {})
-          conditions.inject(super) do |relation, condition|
-            predicate = condition.arel_predicate
-            (condition.attributes.compact.flatten.map(&:name) & object.mobility_attributes).inject(relation) do |i18n_rel, attr|
-              object.mobility_backend_class(attr).apply_scope(i18n_rel, predicate)
-            end
+          sorted = sorts.inject(super) do |relation, sort|
+            predicate = ::Ransack::Visitor.new.visit_Ransack_Nodes_Sort(sort)
+            apply_scope(relation, predicate, [sort.attr_name])
+          end
+          conditions.inject(sorted) do |relation, condition|
+            apply_scope(relation, condition.arel_predicate, condition.attributes.compact.flatten.map(&:name))
+          end
+        end
+
+        private
+
+        def apply_scope(relation, predicate, attributes)
+          (attributes & object.mobility_attributes).inject(relation) do |i18n_rel, attr|
+            object.mobility_backend_class(attr).apply_scope(i18n_rel, predicate)
           end
         end
       end
