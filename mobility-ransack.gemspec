@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.files        = Dir['{lib/**/*,[A-Z]*}']
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'ransack', '~> 1.8.0'
+  spec.add_dependency 'ransack', '>= 1.8.0', '< 2.1'
   spec.add_dependency 'mobility', '~> 0.8.0'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
