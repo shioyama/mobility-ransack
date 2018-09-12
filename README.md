@@ -16,7 +16,7 @@ Search on translated attributes with
 Just add the gem to your Gemfile:
 
 ```ruby
-gem 'mobility-ransack'
+gem 'mobility-ransack', '~> 0.1.0'
 ```
 
 Now enable the `ransack` plugin in Mobility's configuration so that it can be
