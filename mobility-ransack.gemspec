@@ -20,5 +20,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'mobility', '~> 0.8.0'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'database_rewinder', '~> 0.9.0'
+  spec.add_development_dependency 'sqlite3'
 end
