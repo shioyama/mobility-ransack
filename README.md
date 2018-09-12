@@ -13,7 +13,21 @@ Just add the gem to your Gemfile:
 gem 'mobility-ransack'
 ```
 
-Now enable ransack for attributes on a model with the `ransack` option:
+Now enable the `ransack` plugin in Mobility's configuration so that it can be
+used, and optionally set the value for the `:ransack` key in `default_options`
+to `true` to enable it for all translated attributes on all models.
+
+```ruby
+Mobility.configure do |config|
+  # ...
+  config.plugins += [:ransack]
+  # config.default_options[:ransack] = true
+end
+```
+
+If you left the `default_options` line above commented out, you will need to
+explicitly enable ransack for each attribute you want to search on with the
+`ransack` option, like this:
 
 ```ruby
 class Post < ApplicationRecord
@@ -22,7 +36,8 @@ class Post < ApplicationRecord
 end
 ```
 
-Now you can search on `foo` with Ransack just like any untranslated attribute.
+You can search on `foo` with Ransack just like any untranslated attribute, with
+param keys/values like `title_cont`, `title_eq`, etc.
 
 ## License
 
