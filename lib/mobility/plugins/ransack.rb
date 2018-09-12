@@ -28,16 +28,16 @@ module Mobility
         def result(opts = {})
           sorted = sorts.inject(super) do |relation, sort|
             predicate = ::Ransack::Visitor.new.visit_Ransack_Nodes_Sort(sort)
-            apply_scope(relation, predicate, [sort.attr_name])
+            apply_mobility_scope(relation, predicate, [sort.attr_name])
           end
           conditions.inject(sorted) do |relation, condition|
-            apply_scope(relation, condition.arel_predicate, condition.attributes.compact.flatten.map(&:name))
+            apply_mobility_scope(relation, condition.arel_predicate, condition.attributes.compact.flatten.map(&:name))
           end
         end
 
         private
 
-        def apply_scope(relation, predicate, attributes)
+        def apply_mobility_scope(relation, predicate, attributes)
           (attributes & object.mobility_attributes).inject(relation) do |i18n_rel, attr|
             object.mobility_backend_class(attr).apply_scope(i18n_rel, predicate)
           end
