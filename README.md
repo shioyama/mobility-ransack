@@ -1,6 +1,12 @@
 Mobility Ransack
 ================
 
+[![Gem Version](https://badge.fury.io/rb/mobility-ransack.svg)][gem]
+[![Build Status](https://travis-ci.org/shioyama/mobility-ransack.svg?branch=master)][travis]
+
+[gem]: https://rubygems.org/gems/friendly_id-mobility
+[travis]: https://travis-ci.org/shioyama/friendly_id-mobility
+
 Search on translated attributes with
 [Mobility](https://github.com/shioyama/mobility) and
 [Ransack](https://github.com/activerecord-hackery/ransack).
