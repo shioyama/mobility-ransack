@@ -1,6 +1,10 @@
 require "bundler/setup"
 require "mobility/ransack"
 
+ActiveRecord::Base.establish_connection adapter: 'sqlite3', database: ':memory:'
+
+I18n.enforce_available_locales = false
+
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"
@@ -10,5 +14,13 @@ RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
+  end
+
+  config.before(:suite) do
+    DatabaseRewinder.clean_all
+  end
+
+  config.after(:each) do
+    DatabaseRewinder.clean
   end
 end
