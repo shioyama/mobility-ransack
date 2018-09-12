@@ -4,6 +4,9 @@ require "mobility"
 require "mobility/ransack"
 require "pry"
 
+require "database_cleaner"
+DatabaseCleaner.strategy = :transaction
+
 ENV['RAILS_VERSION'] ||= "5.2"
 ActiveRecord::Base.establish_connection adapter: 'sqlite3', database: ':memory:'
 
@@ -18,6 +21,15 @@ RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+    I18n.locale = :en
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
   end
 end
 
