@@ -36,8 +36,15 @@ class Post < ApplicationRecord
 end
 ```
 
-You can search on `foo` with Ransack just like any untranslated attribute, with
-param keys/values like `title_cont`, `title_eq`, etc.
+You can search on `foo` with Ransack just like any untranslated attribute, e.g.
+if `Post` has a `title` attribute translated with the Jsonb backend:
+
+```ruby
+Post.ransack(title_cont: "foo").result
+#=> SELECT "posts".* FROM "posts" WHERE ("posts"."title" ->> 'en') ILIKE '%foo%'
+```
+
+Other backends work exactly the same way.
 
 ## License
 
