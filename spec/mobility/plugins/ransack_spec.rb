@@ -21,6 +21,9 @@ RSpec.describe Mobility::Plugins::Ransack do
   it "sorts on translated attributes" do
     posts = %w[foo2 foo1 foo3].map { |title| Post.create(title: title) }
 
-    expect(Post.ransack(s: ['title asc']).result.to_a).to match_array([posts[1], posts[0], posts[2]])
+    aggregate_failures do
+      expect(Post.ransack(s: ['title asc']).result.to_a).to match_array([posts[1], posts[0], posts[2]])
+      expect(Post.ransack(s: ['title desc']).result.to_a).to match_array([posts[2], posts[0], posts[1]])
+    end
   end
 end
