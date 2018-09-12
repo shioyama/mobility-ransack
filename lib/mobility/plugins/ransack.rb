@@ -26,7 +26,7 @@ module Mobility
 
       class Search < ::Ransack::Search
         def result(opts = {})
-          conditions.inject(@context.evaluate(self, opts)) do |relation, condition|
+          conditions.inject(super) do |relation, condition|
             predicate = condition.arel_predicate
             (condition.attributes.compact.flatten.map(&:name) & object.mobility_attributes).inject(relation) do |i18n_rel, attr|
               object.mobility_backend_class(attr).apply_scope(i18n_rel, predicate)
