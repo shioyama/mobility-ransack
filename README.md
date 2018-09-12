@@ -4,8 +4,8 @@ Mobility Ransack
 [![Gem Version](https://badge.fury.io/rb/mobility-ransack.svg)][gem]
 [![Build Status](https://travis-ci.org/shioyama/mobility-ransack.svg?branch=master)][travis]
 
-[gem]: https://rubygems.org/gems/friendly_id-mobility
-[travis]: https://travis-ci.org/shioyama/friendly_id-mobility
+[gem]: https://rubygems.org/gems/mobility-ransack
+[travis]: https://travis-ci.org/shioyama/mobility-ransack
 
 Search on translated attributes with
 [Mobility](https://github.com/shioyama/mobility) and
