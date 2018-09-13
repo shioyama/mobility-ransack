@@ -9,14 +9,11 @@ module Mobility
       # @param [Boolean] option
       def self.apply(attributes, option)
         if option
-          backend_class = attributes.backend_class
-          plugin = self
-          attributes.model_class.class_eval do
-            attributes.each do |attr|
-              ransacker(attr) { backend_class.build_node(attr, Mobility.locale) }
-            end
-            extend plugin
+          backend_class, model_class = attributes.backend_class, attributes.model_class
+          attributes.each do |attr|
+            model_class.ransacker(attr) { backend_class.build_node(attr, Mobility.locale) }
           end
+          model_class.extend self
         end
       end
 
