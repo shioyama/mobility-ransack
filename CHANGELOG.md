@@ -2,6 +2,12 @@
 
 ## 0.2
 
+### 0.2.1
+- Extend ransack search with module
+  ([#4](https://github.com/shioyama/mobility-ransack/pull/4))
+- Refactor `Mobility::Plugins::Ransack.apply`
+  ([#3](https://github.com/shioyama/mobility-ransack/pull/3))
+
 ### 0.2.0
 
 - Support sorting on translated attributes
