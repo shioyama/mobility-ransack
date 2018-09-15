@@ -17,11 +17,11 @@ module Mobility
         end
       end
 
-      def ransack(params = {}, options = {})
-        Search.new(self, params, options)
+      def ransack(*)
+        super.extend(Search)
       end
 
-      class Search < ::Ransack::Search
+      module Search
         def result(opts = {})
           sorted = sorts.inject(super) do |relation, sort|
             predicate = ::Ransack::Visitor.new.visit_Ransack_Nodes_Sort(sort)
