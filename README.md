@@ -3,9 +3,11 @@ Mobility Ransack
 
 [![Gem Version](https://badge.fury.io/rb/mobility-ransack.svg)][gem]
 [![Build Status](https://travis-ci.org/shioyama/mobility-ransack.svg?branch=master)][travis]
+[![Code Climate](https://api.codeclimate.com/v1/badges/2494f02bcd6b65a545fa/maintainability.svg)][codeclimate]
 
 [gem]: https://rubygems.org/gems/mobility-ransack
 [travis]: https://travis-ci.org/shioyama/mobility-ransack
+[codeclimate]: https://codeclimate.com/github/shioyama/mobility-ransack
 
 Search on translated attributes with
 [Mobility](https://github.com/shioyama/mobility) and
