@@ -12,8 +12,6 @@ group :development, :test do
     gem 'rails', '>= 5.0', '< 5.1'
   else
     gem 'rails', '>= 5.2.0.rc2', '< 5.3'
-    # see: https://github.com/activerecord-hackery/ransack/issues/948#issuecomment-412414365
-    gem 'ransack', '~> 2.0.0'
   end
 
   gem 'pry'
