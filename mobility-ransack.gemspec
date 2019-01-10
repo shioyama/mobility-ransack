@@ -20,6 +20,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'mobility', '~> 0.8.0'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'sqlite3'
-  spec.add_development_dependency "database_cleaner", '~> 1.7.0'
+  spec.add_development_dependency 'sqlite3', '~> 1.3', '>= 1.3.0'
+  spec.add_development_dependency "database_cleaner", '~> 1.7', '>= 1.7.0'
 end
