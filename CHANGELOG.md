@@ -2,6 +2,11 @@
 
 ## 0.2
 
+### 0.2.2
+- Remove version pinning for Ransack dependency
+  ([#6](https://github.com/shioyama/mobility-ransack/pull/6)), thanks
+  [peterwalker](https://github.com/petewalker)!
+
 ### 0.2.1
 - Extend ransack search with module
   ([#4](https://github.com/shioyama/mobility-ransack/pull/4))
