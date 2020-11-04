@@ -4,6 +4,8 @@ require "mobility"
 module Mobility
   module Plugins
     module Ransack
+      extend Plugin
+
       # Applies ransack plugin.
       # @param [Attributes] attributes
       # @param [Boolean] option
@@ -41,5 +43,7 @@ module Mobility
         end
       end
     end
+
+    register_plugin(:ransack, Ransack)
   end
 end
