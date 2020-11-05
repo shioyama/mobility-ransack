@@ -6,21 +6,26 @@ module Mobility
     module Ransack
       extend Plugin
 
+      default true
+      requires :backend, include: :before
+      requires :active_record
+
       # Applies ransack plugin.
       # @param [Attributes] attributes
       # @param [Boolean] option
-      def self.apply(attributes, option)
-        if option
-          backend_class, model_class = attributes.backend_class, attributes.model_class
-          attributes.each do |attr|
-            model_class.ransacker(attr) { backend_class.build_node(attr, Mobility.locale) }
+      included_hook do |klass, backend_class|
+        if options[:ransack]
+          names.each do |name|
+            klass.ransacker(name) { backend_class.build_node(name, Mobility.locale) }
           end
-          model_class.extend self
+          klass.extend ClassMethods
         end
       end
 
-      def ransack(*)
-        super.extend(Search)
+      module ClassMethods
+        def ransack(*)
+          super.extend(Search)
+        end
       end
 
       module Search
@@ -37,7 +42,8 @@ module Mobility
         private
 
         def apply_mobility_scope(relation, predicate, attributes)
-          (attributes & object.mobility_attributes).inject(relation) do |i18n_rel, attr|
+          mobility_attributes = attributes.select { |attr| object.mobility_attribute?(attr) }
+          mobility_attributes.inject(relation) do |i18n_rel, attr|
             object.mobility_backend_class(attr).apply_scope(i18n_rel, predicate)
           end
         end

@@ -37,9 +37,12 @@ RSpec.configure do |config|
 end
 
 Mobility.configure do |config|
-  config.plugins += [:ransack]
-  config.default_backend = :key_value
-  config.default_options[:ransack] = true
+  config.plugins do
+    ransack
+    backend :key_value
+    reader
+    writer
+  end
 end
 
 class MobilityRansackTest < ActiveRecord::Migration[ENV['RAILS_VERSION'].to_f]
