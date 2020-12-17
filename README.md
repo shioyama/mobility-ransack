@@ -18,29 +18,31 @@ Search on translated attributes with
 Just add the gem to your Gemfile:
 
 ```ruby
-gem 'mobility-ransack', '~> 0.2.2'
+gem 'mobility-ransack', '~> 1.0.0'
 ```
 
-Now enable the `ransack` plugin in Mobility's configuration so that it can be
-used, and optionally set the value for the `:ransack` key in `default_options`
-to `true` to enable it for all translated attributes on all models.
+(For Mobility versions earlier than 1.0, replace `1.0.0` with `0.2.2`, but be
+aware this version is no longer supported.)
+
+Now enable the `ransack` plugin in Mobility's configuration:
 
 ```ruby
-Mobility.configure do |config|
-  # ...
-  config.plugins += [:ransack]
-  # config.default_options[:ransack] = true
+Mobility.configure do
+  plugins do
+    ransack
+
+    # ...
+  end
 end
 ```
 
-If you left the `default_options` line above commented out, you will need to
-explicitly enable ransack for each attribute you want to search on with the
-`ransack` option, like this:
+This will enable the ransack plugin for all models. Disable it by passing
+`false` to the `ransack` option:
 
 ```ruby
 class Post < ApplicationRecord
   extend Mobility
-  translates :foo, ransack: true
+  translates :foo, ransack: false
 end
 ```
 
