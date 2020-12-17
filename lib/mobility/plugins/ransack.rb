@@ -42,8 +42,7 @@ module Mobility
         private
 
         def apply_mobility_scope(relation, predicate, attributes)
-          mobility_attributes = attributes.select { |attr| object.mobility_attribute?(attr) }
-          mobility_attributes.inject(relation) do |i18n_rel, attr|
+          (attributes & object.mobility_attributes).inject(relation) do |i18n_rel, attr|
             object.mobility_backend_class(attr).apply_scope(i18n_rel, predicate)
           end
         end
