@@ -35,7 +35,7 @@ module Mobility
             apply_mobility_scope(relation, predicate, [sort.attr_name])
           end
           conditions.inject(sorted) do |relation, condition|
-            apply_mobility_scope(relation, condition.arel_predicate, condition.attributes.compact.flatten.map(&:name))
+            apply_mobility_scope(relation, condition.arel_predicate, condition.attributes.compact.flat_map(&:name))
           end
         end
 
