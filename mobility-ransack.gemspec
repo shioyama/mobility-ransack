@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'ransack', '>= 1.8.0', '< 3.0'
-  spec.add_dependency 'mobility', '~> 1.0.0'
+  spec.add_dependency 'mobility', '~> 1.1'
   spec.add_development_dependency "rake", ">= 12.3.3"
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'sqlite3', '~> 1.3', '>= 1.3.0'
