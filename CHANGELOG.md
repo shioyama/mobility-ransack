@@ -1,5 +1,15 @@
 # Mobility Ransack Changelog
 
+## 1.0
+
+### 1.0.1
+- Update gemspec to support Mobility 1.x
+  ([#17](https://github.com/shioyama/mobility-ransack/pull/17))
+
+### 1.0.0
+- Enable Mobility 1.x compatibility
+  ([#10](https://github.com/shioyama/mobility-ransack/pull/10))
+
 ## 0.2
 
 ### 0.2.2
