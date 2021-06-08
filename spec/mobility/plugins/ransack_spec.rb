@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "mobility/plugins/ransack"
 
 RSpec.describe Mobility::Plugins::Ransack do
@@ -24,6 +26,35 @@ RSpec.describe Mobility::Plugins::Ransack do
     aggregate_failures do
       expect(Post.ransack(s: ['title asc']).result.to_a).to match_array([posts[1], posts[0], posts[2]])
       expect(Post.ransack(s: ['title desc']).result.to_a).to match_array([posts[2], posts[0], posts[1]])
+    end
+  end
+
+  pending 'finds by translated fields of has_many association' do
+    author = Author.create!
+    skiped_author = Author.create!
+    post = Post.create!(author: author, title: 'foo')
+
+    expect(Author.ransack(posts_title_cont: 'foo').result.to_a).to match_array([author])
+  end
+
+  pending 'finds by translated fields of belongs_to association' do
+    author = Author.create!(website: 'google.com')
+    post = Post.create!(author: author, title: 'foo')
+    skiped_post = Post.create!
+
+    expect(Post.ransack(author_website_start: 'google').result.to_a).to match_array([post])
+  end
+
+  pending 'handles grouping search with translated fields with associations' do
+    google_author = Author.create!(website: 'google.com')
+    google_post = Post.create!(author: google_author, title: 'The new things in Firebase', tags: 'firebase lighthouse')
+    verge_author = Author.create!(website: 'verge.com')
+    verge_post = Post.create!(author: verge_author, title: 'Google and GDPR policy in Europe', tags: 'gdpr google europe')
+
+    aggregate_failures do
+      expect(Post.ransack(title_cont: 'google', author_website_start: 'google', m: 'or').result.to_a).to match_array([google_post, verge_post])
+      expect(Post.ransack(tags_cont: 'google', author_website_start: 'google', m: 'or').result.to_a).to match_array([google_post, verge_post])
+      expect(Post.ransack(tags_cont: 'google', title_cont: 'google', m: 'and').result.to_a).to match_array([verge_post])
     end
   end
 end
