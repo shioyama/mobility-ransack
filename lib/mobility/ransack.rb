@@ -1,4 +1,7 @@
-require "mobility/ransack/version"
+# frozen_string_literal: true
+
+require 'mobility/ransack/adapter'
+require 'mobility/ransack/version'
 
 module Mobility
   module Ransack
