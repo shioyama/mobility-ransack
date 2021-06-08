@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "bundler/setup"
 require "active_record"
 require "mobility"
@@ -47,7 +49,12 @@ end
 
 class MobilityRansackTest < ActiveRecord::Migration[ENV['RAILS_VERSION'].to_f]
   def self.up
+    create_table :authors do
+    end
+
     create_table :posts do |t|
+      t.integer :author_id
+      t.string :tags
     end
 
     create_table :mobility_string_translations do |t|
@@ -73,8 +80,15 @@ end
 ActiveRecord::Migration.verbose = false
 MobilityRansackTest.up
 
+class Author < ActiveRecord::Base
+  extend Mobility
+  has_many :posts
+  translates :website, type: :string
+end
+
 class Post < ActiveRecord::Base
   extend Mobility
   translates :title, type: :string
   translates :content, type: :text
+  belongs_to :author, optional: true
 end
