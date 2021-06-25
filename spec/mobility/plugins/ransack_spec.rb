@@ -30,11 +30,16 @@ RSpec.describe Mobility::Plugins::Ransack do
   end
 
   it 'finds by translated fields of has_many association' do
-    author = Author.create!
-    Author.create!
-    post = Post.create!(author: author, title: 'foo')
+    author1 = Author.create!
+    post1 = Post.create!(author: author1, title: 'foo')
 
-    expect(Author.ransack(posts_title_cont: 'foo').result.to_a).to match_array([author])
+    author2 = Author.create!
+    post2 = Mobility.with_locale(:ja) { Post.create!(author: author2, title: 'foo') }
+
+    expect(Author.ransack(posts_title_cont: 'foo').result.to_a).to match_array([author1])
+    Mobility.with_locale(:ja) do
+      expect(Author.ransack(posts_title_cont: 'foo').result.to_a).to eq([author2])
+    end
   end
 
   it 'finds by translated fields of belongs_to association' do
@@ -43,6 +48,15 @@ RSpec.describe Mobility::Plugins::Ransack do
     Post.create!
 
     expect(Post.ransack(author_website_start: 'google').result.to_a).to match_array([post])
+  end
+
+  it 'handles associations with non-Mobility models' do
+    post1 = Post.create!(title: 'foo')
+    post2 = Post.create!(title: 'bar')
+    comment = Comment.create!(post: post1)
+
+    expect(Comment.ransack(post_title_start: 'foo').result.to_a).to eq([comment])
+    expect(Comment.ransack(post_title_start: 'bar').result.to_a).to eq([])
   end
 
   it 'handles grouping search with translated fields with associations' do

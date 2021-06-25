@@ -52,6 +52,10 @@ class MobilityRansackTest < ActiveRecord::Migration[ENV['RAILS_VERSION'].to_f]
     create_table :authors do
     end
 
+    create_table :comments do |t|
+      t.integer :post_id
+    end
+
     create_table :posts do |t|
       t.integer :author_id
       t.string :tags
@@ -91,4 +95,8 @@ class Post < ActiveRecord::Base
   translates :title, type: :string
   translates :content, type: :text
   belongs_to :author, optional: true
+end
+
+class Comment < ActiveRecord::Base
+  belongs_to :post
 end
