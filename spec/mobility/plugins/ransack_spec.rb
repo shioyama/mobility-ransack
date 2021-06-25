@@ -29,23 +29,23 @@ RSpec.describe Mobility::Plugins::Ransack do
     end
   end
 
-  pending 'finds by translated fields of has_many association' do
+  it 'finds by translated fields of has_many association' do
     author = Author.create!
-    skiped_author = Author.create!
+    Author.create!
     post = Post.create!(author: author, title: 'foo')
 
     expect(Author.ransack(posts_title_cont: 'foo').result.to_a).to match_array([author])
   end
 
-  pending 'finds by translated fields of belongs_to association' do
+  it 'finds by translated fields of belongs_to association' do
     author = Author.create!(website: 'google.com')
     post = Post.create!(author: author, title: 'foo')
-    skiped_post = Post.create!
+    Post.create!
 
     expect(Post.ransack(author_website_start: 'google').result.to_a).to match_array([post])
   end
 
-  pending 'handles grouping search with translated fields with associations' do
+  it 'handles grouping search with translated fields with associations' do
     google_author = Author.create!(website: 'google.com')
     google_post = Post.create!(author: google_author, title: 'The new things in Firebase', tags: 'firebase lighthouse')
     verge_author = Author.create!(website: 'verge.com')
