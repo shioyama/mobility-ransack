@@ -1,5 +1,11 @@
 # Mobility Ransack Changelog
 
+## 1.1
+
+### 1.1.0
+- Make MobilityRansack handle associations correctly
+  ([#20](https://github.com/shioyama/mobility-ransack/pull/20))
+
 ## 1.0
 
 ### 1.0.1
