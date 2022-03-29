@@ -12,7 +12,7 @@ module Mobility
       private
 
       def visit_collection(objects)
-        objects.map(&method(:visit)).sum.uniq
+        objects.map(&method(:visit)).sum([]).uniq
       end
       alias :visit_Array :visit_collection
       alias :visit_Arel_Nodes_Equality :visit_Arel_Nodes_Binary
@@ -22,7 +22,7 @@ module Mobility
         [[object.backend_class, object.locale]]
       end
 
-      def visit_default(_)
+      def visit_default(*)
         []
       end
     end
