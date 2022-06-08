@@ -2,6 +2,13 @@
 
 ## 1.1
 
+### 1.2.0
+- [Add compatibility with rails
+  7+](https://github.com/shioyama/mobility-ransack/pull/22), thanks
+  [mhenrixon](https://github.com/mhenrixon)!
+- [Update mobility-ransack.gemspec](https://github.com/shioyama/mobility-ransack/pull/23),
+  thanks [kevynlebouille](https://github.com/kevynlebouille)!
+
 ### 1.1.0
 - Make MobilityRansack handle associations correctly
   ([#20](https://github.com/shioyama/mobility-ransack/pull/20))
