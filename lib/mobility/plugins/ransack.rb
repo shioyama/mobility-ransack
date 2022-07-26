@@ -1,5 +1,6 @@
 require "ransack"
 require "mobility"
+require "mobility/ransack"
 
 module Mobility
   module Plugins
