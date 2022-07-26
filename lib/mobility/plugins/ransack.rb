@@ -1,5 +1,6 @@
 require "ransack"
 require "mobility"
+require "mobility/ransack"
 
 module Mobility
   module Plugins
@@ -21,7 +22,6 @@ module Mobility
         end
       end
     end
-
     register_plugin(:ransack, Ransack)
   end
 end
