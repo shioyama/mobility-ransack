@@ -2,6 +2,10 @@
 
 ## 1.1
 
+### 1.2.1
+- Require mobility/ransack into plugin file
+  ([#26](https://github.com/shioyama/mobility-ransack/pull/26))
+
 ### 1.2.0
 - [Add compatibility with rails
   7+](https://github.com/shioyama/mobility-ransack/pull/22), thanks
