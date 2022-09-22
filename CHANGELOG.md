@@ -1,6 +1,10 @@
 # Mobility Ransack Changelog
 
-## 1.1
+### unreleased
+- Update gemspec to support Ransack 3.2
+  ([#24](https://github.com/shioyama/mobility-ransack/pull/24))
+
+## 1.2
 
 ### 1.2.1
 - Require mobility/ransack into plugin file
@@ -12,6 +16,8 @@
   [mhenrixon](https://github.com/mhenrixon)!
 - [Update mobility-ransack.gemspec](https://github.com/shioyama/mobility-ransack/pull/23),
   thanks [kevynlebouille](https://github.com/kevynlebouille)!
+
+## 1.1
 
 ### 1.1.0
 - Make MobilityRansack handle associations correctly
