@@ -47,14 +47,14 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Update packages
         run: sudo apt-get update
       - name: Install Sqlite
         run: sudo apt-get install libsqlite3-dev -y
         if: matrix.database == 'sqlite3'
       - id: cache-bundler
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: ${{ matrix.ruby }}-${{ matrix.rails }}-${{ hashFiles('mobility-ransack.gemspec') }}-${{ hashFiles('Gemfile') }}
