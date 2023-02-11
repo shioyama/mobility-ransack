@@ -88,6 +88,14 @@ class Author < ActiveRecord::Base
   extend Mobility
   has_many :posts
   translates :website, type: :string
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[website]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[mobility_string_translations posts]
+  end
 end
 
 class Post < ActiveRecord::Base
@@ -95,8 +103,24 @@ class Post < ActiveRecord::Base
   translates :title, type: :string
   translates :content, type: :text
   belongs_to :author, optional: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[title content tags]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[mobility_string_translations mobility_text_translations author]
+  end
 end
 
 class Comment < ActiveRecord::Base
   belongs_to :post
+
+  def self.ransackable_attributes(auth_object = nil)
+    []
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[post]
+  end
 end
