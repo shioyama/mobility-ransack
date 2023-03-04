@@ -2,6 +2,12 @@
 
 ## 1.1
 
+### 1.2.2
+- Support Ransack 4.0
+  ([#32](https://github.com/shioyama/mobility-ransack/pull/32),
+  [#30](https://github.com/shioyama/mobility-ransack/pull/30))
+  thanks [tagliala](https://github.com/tagliala)!
+
 ### 1.2.1
 - Require mobility/ransack into plugin file
   ([#26](https://github.com/shioyama/mobility-ransack/pull/26))
