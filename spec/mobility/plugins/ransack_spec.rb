@@ -59,6 +59,40 @@ RSpec.describe Mobility::Plugins::Ransack do
     expect(Comment.ransack(post_title_start: 'bar').result.to_a).to eq([])
   end
 
+  context 'locale-specific queries' do
+    let!(:post) do
+      post = Post.create!(title: 'Hello')
+      Mobility.with_locale(:ja) { post.update!(title: 'Konnichiwa') }
+      post
+    end
+
+    it 'searches within the specified locale regardless of current locale' do
+      Mobility.with_locale(:ja) do
+        expect(Post.ransack(title_en_cont: 'Hello').result).to eq([post])
+        expect(Post.ransack(title_ja_cont: 'Hello').result).to eq([])
+      end
+    end
+
+    it 'sorts by the specified locale' do
+      post.destroy!
+      posts = %w[B A C].map { |t| Post.create!(title: t) }
+
+      expect(Post.ransack(s: ['title_en asc']).result.to_a).to eq([posts[1], posts[0], posts[2]])
+    end
+
+    it 'works through associations' do
+      author = Author.create!
+      post.update!(author: author)
+
+      expect(Author.ransack(posts_title_en_cont: 'Hello').result).to eq([author])
+      expect(Author.ransack(posts_title_ja_cont: 'Hello').result).to eq([])
+    end
+  end
+
+  it 'registers locale-specific ransackers' do
+    expect(Post._ransackers.keys).to include('title', 'title_en', 'title_ja')
+  end
+
   it 'handles grouping search with translated fields with associations' do
     google_author = Author.create!(website: 'google.com')
     google_post = Post.create!(author: google_author, title: 'The new things in Firebase', tags: 'firebase lighthouse')

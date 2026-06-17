@@ -13,6 +13,7 @@ ENV['RAILS_VERSION'] ||= "5.2"
 ActiveRecord::Base.establish_connection adapter: 'sqlite3', database: ':memory:'
 
 I18n.enforce_available_locales = false
+I18n.available_locales = [:en, :ja]
 
 RSpec.configure do |config|
   config.filter_run focus: true
@@ -90,7 +91,7 @@ class Author < ActiveRecord::Base
   translates :website, type: :string
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[website]
+    %w[website website_en website_ja]
   end
 
   def self.ransackable_associations(auth_object = nil)
@@ -105,7 +106,7 @@ class Post < ActiveRecord::Base
   belongs_to :author, optional: true
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[title content tags]
+    %w[title content tags title_en title_ja content_en content_ja]
   end
 
   def self.ransackable_associations(auth_object = nil)

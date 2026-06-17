@@ -19,6 +19,15 @@ module Mobility
           names.each do |name|
             klass.ransacker(name) { backend_class.build_node(name, Mobility.locale) }
           end
+
+          locales = options[:ransack] == true ? Mobility.available_locales : Array(options[:ransack])
+          locales.each do |locale|
+            locale = locale.to_sym
+            normalized = Mobility.normalize_locale(locale)
+            names.each do |name|
+              klass.ransacker("#{name}_#{normalized}") { backend_class.build_node(name, locale) }
+            end
+          end
         end
       end
     end
