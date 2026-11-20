@@ -39,6 +39,21 @@ jobs:
             rails: '6.0'
           - ruby: '3.2'
             rails: '6.1'
+        include:
+          - ruby: '3.2'
+            rails: '7.1'
+          - ruby: '3.2'
+            rails: '7.2'
+          - ruby: '3.3'
+            rails: '7.2'
+          - ruby: '3.3'
+            rails: '8.0'
+          - ruby: '3.4'
+            rails: '8.0'
+          - ruby: '3.4'
+            rails: '8.1'
+          - ruby: '4.0'
+            rails: '8.1'
     env:
       BUNDLE_JOBS: 4
       BUNDLE_PATH: vendor/bundle
